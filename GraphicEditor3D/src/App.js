@@ -228,6 +228,14 @@ const App = () => {
                 reset={reset}
                 height={headerHeight}
                 padding={headerPadding}
+                angleX={angleX}
+                angleXChange={angleXChange}
+                angleY={angleY}
+                angleYChange={angleYChange}
+                distance={distance}
+                distanceChange={distanceChange}
+                size={size}
+                sizeChange={sizeChange}
               />
               <div
                   style={{

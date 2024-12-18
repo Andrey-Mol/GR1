@@ -1,6 +1,7 @@
 /** Преобразовать данные в текст */
-const convertToText = (points, sticks) => {
+const convertToText = (points, sticks, angelX, angelY, distance, size) => {
   let text = "";
+  text += `m ${angelX} ${angelY} ${distance} ${size}\n`
   points.forEach((p) => {
     text += `p ${p.x} ${p.y} ${p.z}\n`;
   });

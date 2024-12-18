@@ -32,6 +32,14 @@ const RegimeButtons = ({
                          reset,
                          height,
                          padding,
+                         angleX,
+                         angleXChange,
+                         angleY,
+                         angleYChange,
+                         distance,
+                         distanceChange,
+                         size,
+                         sizeChange
                        }) => {
   const delimiter = "delimiter";
   const drawRegimes = [
@@ -95,7 +103,7 @@ const RegimeButtons = ({
       icon: <FaFileExport />,
       disabled: false,
       onClick: () => {
-        let text = convertToText(points, sticks);
+        let text = convertToText(points, sticks, angleX, angleY, distance, size );
         downloadFile(text, "model.txt");
       },
     },
@@ -105,9 +113,13 @@ const RegimeButtons = ({
       disabled: false,
       onClick: () => {
         readFile((t, n) => {
-          const [p, s] = convertFromText(t);
+          const [p, s, x, y, d, sz] = convertFromText(t);
           pointsChange(p);
           sticksChange(s);
+          angleXChange(x);
+          angleYChange(y);
+          distanceChange(d);
+          sizeChange(sz);
         });
       },
     },

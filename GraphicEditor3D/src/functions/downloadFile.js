@@ -14,21 +14,24 @@ const downloadFile = async (text, name) => {
     })();
   // Если есть диалоговое окно, то открыть его
   if (supportsFileSystemAccess) {
-    const getNewFileHandle = async () => {
-      const opts = {
-        types: [
-          {
-            description: "Text file",
-            accept: { "text/plain": [".txt"] },
-          },
-        ],
+    try {
+
+      const getNewFileHandle = async () => {
+        const opts = {
+          types: [
+            {
+              description: "Text file",
+              accept: {"text/plain": [".txt"]},
+            },
+          ],
+        };
+        return await window.showSaveFilePicker(opts);
       };
-      return await window.showSaveFilePicker(opts);
-    };
-    let a = await getNewFileHandle();
-    const writable = await a.createWritable();
-    await writable.write(blob);
-    await writable.close();
+      let a = await getNewFileHandle();
+      const writable = await a.createWritable();
+      await writable.write(blob);
+      await writable.close();
+    } catch (e) {}
   }
   // Если нет, то скачать файл с заранее заданным именем
   else {
